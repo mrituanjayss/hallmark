@@ -155,7 +155,7 @@ const Header = memo(
           <Stack alignItems="center" direction={'row'} gap={!matches ? 3 : 0}>
             {!matches ? <Logo style={{ maxHeight: '25px' }} /> : null}
             <Nav
-              // matches={matches}
+              matches={matches}
               dataPersistence={projectSettings?.dataPersistence}
               // hasReadme={!!projectSettings?.markdown}
             />

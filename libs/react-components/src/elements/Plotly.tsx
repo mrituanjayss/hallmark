@@ -13,7 +13,6 @@ interface Props {
 
 const _PlotlyElement = ({ element }: Props) => {
   const { data, error, isLoading } = useFetch(element.url || null);
-
   if (isLoading) {
     return <div>Loading...</div>;
   } else if (error) {

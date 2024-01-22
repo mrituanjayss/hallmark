@@ -61,6 +61,8 @@
   },
   "dependencies": {
     "draft-js": "^0.11.7",
+    "echarts": "^5.4.3",
+    "echarts-for-react": "^3.0.2",
     "formik": "^2.4.3",
     "highlight.js": "^11.9.0",
     "lodash": "^4.17.21",

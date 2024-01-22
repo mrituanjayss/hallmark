@@ -10,6 +10,7 @@ export { PDFElement } from './PDF';
 export { PlotlyElement } from './Plotly';
 export { TextElement } from './Text';
 export { VideoElement } from './Video';
+export { EChartsElement } from './Echarts';
 
 // Inlined
 export { InlinedAudioList } from './InlinedAudioList';

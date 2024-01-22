@@ -5,6 +5,7 @@ from io import BytesIO
 from typing import Any, ClassVar, List, Literal, Optional, TypedDict, TypeVar, Union
 
 import filetype
+import html2text  # added by Jay 22/1/2024
 from chainlit.context import context
 from chainlit.data import get_data_layer
 from chainlit.logger import logger
@@ -17,10 +18,20 @@ mime_types = {
     "text": "text/plain",
     "tasklist": "application/json",
     "plotly": "application/json",
+    "echarts": "application/json",
 }
 
 ElementType = Literal[
-    "image", "avatar", "text", "pdf", "tasklist", "audio", "video", "file", "plotly"
+    "image",
+    "avatar",
+    "text",
+    "pdf",
+    "tasklist",
+    "audio",
+    "video",
+    "file",
+    "plotly",
+    "echarts",  # Modified by Jay 22/1/2024
 ]
 ElementDisplay = Literal["inline", "side", "page"]
 ElementSize = Literal["small", "medium", "large"]
@@ -342,6 +353,53 @@ class Plotly(Element):
         self.figure.layout.width = None
         self.figure.layout.height = None
         self.content = pio.to_json(self.figure, validate=True)
+        self.mime = "application/json"
+
+        super().__post_init__()
+
+
+@dataclass
+class ECharts(Element):
+    """Useful to send an echarts chart to the UI."""
+
+    type: ClassVar[ElementType] = "echarts"
+
+    size: ElementSize = "medium"
+    # The chart options to be sent to the UI
+    options: Optional[dict] = None
+
+    def __post_init__(self) -> None:
+        from pyecharts import options as opts
+        from pyecharts.charts import (  # Adjust this import based on the type of chart you are using
+            Bar,
+        )
+
+        if not self.options:
+            raise ValueError("Must provide options to send ECharts element")
+
+        # # Create an ECharts chart based on the provided options
+        # chart = Bar().set_global_opts(
+        #     title_opts=opts.TitleOpts(title="ECharts Chart"),
+        #     toolbox_opts=opts.ToolboxOpts(is_show=True),  # Show toolbox for interactivity
+        #     # Add other necessary options based on your chart type
+        # ).add_xaxis(self.options['xAxis']).add_yaxis("Series 1", self.options['series'])
+
+        # # Set chart options
+        # chart.set_series_opts(
+        #     label_opts=opts.LabelOpts(is_show=True),
+        #     markline_opts=opts.MarkLineOpts(
+        #         data=[
+        #             opts.MarkLineItem(type_="average", name="Average Value"),
+        #         ]
+        #     ),
+        # )
+
+        # Render the chart as HTML
+        # chart_html = chart.render_notebook()
+
+        # Set the HTML content as the element's content
+        self.content = json.dumps(self.options)
+        print(self.content)
         self.mime = "application/json"
 
         super().__post_init__()
