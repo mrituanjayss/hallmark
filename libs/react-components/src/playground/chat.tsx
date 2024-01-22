@@ -70,7 +70,8 @@ export const ChatPromptPlayground = forwardRef(
             overflow: 'auto',
             scrollbarGutter: 'stable',
             marginTop: 1,
-            gap: 1
+            gap: 1,
+            marginLeft: 0 // Adjust this value as needed
           }}
         >
           {messages?.length ? (

@@ -1,12 +1,11 @@
 import { useAuth } from 'api/auth';
 import { memo, useRef, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
 
+// import { Link, useLocation } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import {
   AppBar,
-  Box,
-  Button,
+  Box, // Button,
   IconButton,
   Menu,
   Stack,
@@ -14,10 +13,9 @@ import {
 } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-import { RegularButton } from '@chainlit/react-components';
-
+// import { RegularButton } from '@chainlit/react-components';
 import GithubButton from 'components/atoms/buttons/githubButton';
-import UserButton from 'components/atoms/buttons/userButton';
+// import UserButton from 'components/atoms/buttons/userButton';
 import { Logo } from 'components/atoms/logo';
 import NewChatButton from 'components/molecules/newChatButton';
 
@@ -25,37 +23,37 @@ import { IProjectSettings } from 'state/project';
 
 import { OpenThreadListButton } from './threadHistory/sidebar/OpenThreadListButton';
 
-interface INavItem {
-  to: string;
-  label: string;
-}
+// interface INavItem {
+//   to: string;
+//   label: string;
+// }
 
-function ActiveNavItem({ to, label }: INavItem) {
-  return (
-    <RegularButton component={Link} to={to} key={to}>
-      {label}
-    </RegularButton>
-  );
-}
+// function ActiveNavItem({ to, label }: INavItem) {
+//   return (
+//     <RegularButton component={Link} to={to} key={to}>
+//       {label}
+//     </RegularButton>
+//   );
+// }
 
-function NavItem({ to, label }: INavItem) {
-  return (
-    <Button
-      component={Link}
-      to={to}
-      key={to}
-      sx={{
-        textTransform: 'none',
-        color: 'text.secondary',
-        '&:hover': {
-          background: 'transparent'
-        }
-      }}
-    >
-      {label}
-    </Button>
-  );
-}
+// function NavItem({ to, label }: INavItem) {
+//   return (
+//     <Button
+//       component={Link}
+//       to={to}
+//       key={to}
+//       sx={{
+//         textTransform: 'none',
+//         color: 'text.secondary',
+//         '&:hover': {
+//           background: 'transparent'
+//         }
+//       }}
+//     >
+//       {label}
+//     </Button>
+//   );
+// }
 
 interface NavProps {
   dataPersistence?: boolean;
@@ -63,8 +61,8 @@ interface NavProps {
   matches?: boolean;
 }
 
-const Nav = ({ dataPersistence, hasReadme, matches }: NavProps) => {
-  const location = useLocation();
+const Nav = ({ dataPersistence, matches }: NavProps) => {
+  // const location = useLocation();
   const { isAuthenticated } = useAuth();
   const [open, setOpen] = useState(false);
   const ref = useRef<any>();
@@ -75,22 +73,22 @@ const Nav = ({ dataPersistence, hasReadme, matches }: NavProps) => {
     anchorEl = ref.current;
   }
 
-  const tabs = [{ to: '/', label: 'Chat' }];
-
-  if (hasReadme) {
-    tabs.push({ to: '/readme', label: 'Readme' });
-  }
+  // const tabs = [{ to: '/', label: 'Chat' }];
+  // const tabs = [];
+  // if (hasReadme) {
+  //   tabs.push({ to: '/readme', label: 'Readme' });
+  // }
 
   const nav = (
     <Stack direction={matches ? 'column' : 'row'} spacing={1}>
-      {tabs.map((t) => {
+      {/* {tabs.map((t) => {
         const active = location.pathname === t.to;
         return (
           <div key={t.to}>
             {active ? <ActiveNavItem {...t} /> : <NavItem {...t} />}
           </div>
         );
-      })}
+      })} */}
     </Stack>
   );
 
@@ -157,9 +155,9 @@ const Header = memo(
           <Stack alignItems="center" direction={'row'} gap={!matches ? 3 : 0}>
             {!matches ? <Logo style={{ maxHeight: '25px' }} /> : null}
             <Nav
-              matches={matches}
+              // matches={matches}
               dataPersistence={projectSettings?.dataPersistence}
-              hasReadme={!!projectSettings?.markdown}
+              // hasReadme={!!projectSettings?.markdown}
             />
           </Stack>
           <Stack
@@ -172,7 +170,7 @@ const Header = memo(
             <NewChatButton />
             <Box ml={1} />
             <GithubButton href={projectSettings?.ui?.github} />
-            <UserButton />
+            {/* <UserButton /> */}
           </Stack>
         </Toolbar>
       </AppBar>

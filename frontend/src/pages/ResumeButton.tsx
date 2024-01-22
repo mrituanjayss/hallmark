@@ -6,8 +6,7 @@ import { Box, Button } from '@mui/material';
 
 import { useChatInteract } from '@chainlit/react-client';
 
-import WaterMark from 'components/organisms/chat/inputBox/waterMark';
-
+// import WaterMark from 'components/organisms/chat/inputBox/waterMark';
 import { projectSettingsState } from 'state/project';
 
 interface Props {
@@ -47,7 +46,7 @@ export default function ResumeButton({ threadId }: Props) {
       <Button id="resumeThread" onClick={onClick} variant="contained">
         Resume chat
       </Button>
-      <WaterMark />
+      {/* <WaterMark /> */}
     </Box>
   );
 }

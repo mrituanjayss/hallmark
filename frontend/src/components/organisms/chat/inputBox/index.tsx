@@ -14,7 +14,8 @@ import { IProjectSettings } from 'state/project';
 import { inputHistoryState } from 'state/userInputHistory';
 
 import Input from './input';
-import WaterMark from './waterMark';
+
+// import WaterMark from './waterMark';
 
 interface Props {
   fileSpec: FileSpec;
@@ -133,7 +134,7 @@ const InputBox = memo(
         </Stack> */}
           {/* )} */}
         </Box>
-        <WaterMark />
+        {/* <WaterMark /> */}
       </Box>
     );
   }
