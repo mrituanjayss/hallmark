@@ -23,6 +23,7 @@ import { IProjectSettings } from 'state/project';
 
 import { OpenThreadListButton } from './threadHistory/sidebar/OpenThreadListButton';
 
+//Commented this block because it is not needed (can be used later) (By Jay 20/1/2024)
 // interface INavItem {
 //   to: string;
 //   label: string;
@@ -73,12 +74,14 @@ const Nav = ({ dataPersistence, matches }: NavProps) => {
     anchorEl = ref.current;
   }
 
+  //Commented this block because it is not needed (can be used later)(By Jay 20/1/2024)
   // const tabs = [{ to: '/', label: 'Chat' }];
   // const tabs = [];
   // if (hasReadme) {
   //   tabs.push({ to: '/readme', label: 'Readme' });
   // }
 
+  //Commented this block because it is not needed (can be used later)(By Jay 20/1/2024)
   const nav = (
     <Stack direction={matches ? 'column' : 'row'} spacing={1}>
       {/* {tabs.map((t) => {
@@ -157,7 +160,7 @@ const Header = memo(
             <Nav
               matches={matches}
               dataPersistence={projectSettings?.dataPersistence}
-              // hasReadme={!!projectSettings?.markdown}
+              // hasReadme={!!projectSettings?.markdown}        // Modified by Jay to remove readme button 20/1/2024
             />
           </Stack>
           <Stack
@@ -170,7 +173,8 @@ const Header = memo(
             <NewChatButton />
             <Box ml={1} />
             <GithubButton href={projectSettings?.ui?.github} />
-            {/* <UserButton /> */}
+
+            {/* <UserButton /> Modified by Jay to remove user icon button 20/1/2024 */}
           </Stack>
         </Toolbar>
       </AppBar>

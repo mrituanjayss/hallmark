@@ -1,8 +1,8 @@
 import type { IMessageElement } from 'client-types/';
 
 import { AudioElement } from './Audio';
-// Added by Jay 22/1/2024
 import { EChartsElement } from './Echarts';
+// Added by Jay 22/1/2024
 import { FileElement } from './File';
 import { ImageElement } from './Image';
 import { PDFElement } from './PDF';
@@ -15,6 +15,7 @@ interface ElementProps {
 }
 
 const Element = ({ element }: ElementProps): JSX.Element | null => {
+  console.log(element);
   switch (element?.type) {
     case 'file':
       return <FileElement element={element} />;

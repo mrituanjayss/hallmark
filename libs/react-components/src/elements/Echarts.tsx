@@ -17,7 +17,7 @@ interface Props {
 
 const _EChartsElement = ({ element }: Props) => {
   const { data, error, isLoading } = useFetch(element.url || null);
-  console.log('Mrituanjay');
+  console.log(data); //its not printing data here because the useFetch is not working for Echarts
   if (isLoading) {
     return <div>Loading...</div>;
   } else if (error) {
@@ -35,7 +35,7 @@ const _EChartsElement = ({ element }: Props) => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <ReactECharts
-        option={option}
+        option={option} // Set the data for plot
         notMerge={true}
         lazyUpdate={true}
         theme={'default'} // Use the provided theme or fallback to 'default'

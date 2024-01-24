@@ -21,3 +21,4 @@ export { InlinedPDFList } from './InlinedPDFList';
 export { InlinedPlotlyList } from './InlinedPlotlyList';
 export { InlinedTextList } from './InlinedTextList';
 export { InlinedVideoList } from './InlinedVideoList';
+export { InlinedEchartList } from './InlinedEchartList'; // Added by Jay 23/1/2024

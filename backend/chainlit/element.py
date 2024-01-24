@@ -18,7 +18,7 @@ mime_types = {
     "text": "text/plain",
     "tasklist": "application/json",
     "plotly": "application/json",
-    "echarts": "application/json",
+    "echarts": "application/json",  # Added by Jay 23/1/2024
 }
 
 ElementType = Literal[
@@ -176,10 +176,11 @@ class Element:
             )
 
         await self._create()
+        print(self.chainlit_key)
 
         if not self.url and not self.chainlit_key:
             raise ValueError("Must provide url or chainlit key to send element")
-
+        # You can print the emitted dict here
         trace_event(f"send {self.__class__.__name__}")
         await context.emitter.emit("element", self.to_dict())
 
@@ -358,6 +359,7 @@ class Plotly(Element):
         super().__post_init__()
 
 
+# Echarts Dataclass added by Jay 24/1/2024
 @dataclass
 class ECharts(Element):
     """Useful to send an echarts chart to the UI."""
@@ -369,37 +371,6 @@ class ECharts(Element):
     options: Optional[dict] = None
 
     def __post_init__(self) -> None:
-        from pyecharts import options as opts
-        from pyecharts.charts import (  # Adjust this import based on the type of chart you are using
-            Bar,
-        )
-
-        if not self.options:
-            raise ValueError("Must provide options to send ECharts element")
-
-        # # Create an ECharts chart based on the provided options
-        # chart = Bar().set_global_opts(
-        #     title_opts=opts.TitleOpts(title="ECharts Chart"),
-        #     toolbox_opts=opts.ToolboxOpts(is_show=True),  # Show toolbox for interactivity
-        #     # Add other necessary options based on your chart type
-        # ).add_xaxis(self.options['xAxis']).add_yaxis("Series 1", self.options['series'])
-
-        # # Set chart options
-        # chart.set_series_opts(
-        #     label_opts=opts.LabelOpts(is_show=True),
-        #     markline_opts=opts.MarkLineOpts(
-        #         data=[
-        #             opts.MarkLineItem(type_="average", name="Average Value"),
-        #         ]
-        #     ),
-        # )
-
-        # Render the chart as HTML
-        # chart_html = chart.render_notebook()
-
-        # Set the HTML content as the element's content
-        self.content = json.dumps(self.options)
-        print(self.content)
         self.mime = "application/json"
-
+        self.content = json.dumps(self.options)
         super().__post_init__()
