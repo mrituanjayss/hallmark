@@ -1,6 +1,6 @@
-import StopCircle from '@mui/icons-material/StopCircle';
+// import StopCircle from '@mui/icons-material/StopCircle'; // Commented by Jay 3/2/2024
 import Telegram from '@mui/icons-material/Telegram';
-import { Tooltip } from '@mui/material';
+import { CircularProgress, Tooltip } from '@mui/material';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -37,8 +37,15 @@ const SubmitButton = ({ disabled, onSubmit }: SubmitButtonProps) => {
         </Tooltip>
       ) : (
         <Tooltip title="Stop task">
-          <IconButton id="stop-button" onClick={handleClick}>
-            <StopCircle />
+          <IconButton
+            id="stop-button"
+            disabled={disabled}
+            onClick={handleClick}
+            sx={{ color: 'red' }}
+          >
+            {' '}
+            {/*Added by Jay 3/2/2024*/}
+            <CircularProgress size={24} color="inherit" />
           </IconButton>
         </Tooltip>
       )}

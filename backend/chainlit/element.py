@@ -5,14 +5,14 @@ from io import BytesIO
 from typing import Any, ClassVar, List, Literal, Optional, TypedDict, TypeVar, Union
 
 import filetype
-import html2text  # added by Jay 22/1/2024
+from pydantic.dataclasses import Field, dataclass
+from syncer import asyncio
+
 from chainlit.context import context
 from chainlit.data import get_data_layer
 from chainlit.logger import logger
 from chainlit.telemetry import trace_event
 from chainlit.types import FileDict
-from pydantic.dataclasses import Field, dataclass
-from syncer import asyncio
 
 mime_types = {
     "text": "text/plain",
@@ -176,7 +176,6 @@ class Element:
             )
 
         await self._create()
-        print(self.chainlit_key)
 
         if not self.url and not self.chainlit_key:
             raise ValueError("Must provide url or chainlit key to send element")
